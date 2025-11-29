@@ -1,7 +1,7 @@
 BSD 3-Clause License
 
-Copyright (c) 2024, [Your Name/Contributors]
-Copyright (c) 2016, mycli contributors (original Python implementation)
+Copyright (c) 2024, go-mycli contributors
+Copyright (c) 2016, mycli contributors (original Python implementation: https://github.com/dbcli/mycli)
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
