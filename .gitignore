@@ -1,0 +1,22 @@
+# Binaries
+bin/
+*.exe
+
+# Config files
+.my.cnf
+*.my.cnf
+
+# Cache
+*.db
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

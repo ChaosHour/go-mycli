@@ -1,0 +1,13 @@
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: mcp-server/Dockerfile
+    ports:
+      - "8800:8800"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASS=s3cr3t
+      - MYSQL_HOST=host.docker.internal:3306
+      - MYSQL_DATABASE=sakila
+    command: ["./bin/mcp-server", "--listen", ":8800", "--mcp-command", "./bin/sqlbot"]
