@@ -1,6 +1,7 @@
 # AI Setup Guide
 
-go-mycli supports AI-powered EXPLAIN analysis through multiple backends. Choose the one that fits your needs.
+go-mycli supports AI-powered EXPLAIN analysis through multiple backends.
+Choose the one that fits your needs.
 
 ## Quick Comparison
 
@@ -18,18 +19,25 @@ Use your existing GitHub Copilot subscription via the integrated sqlbot MCP serv
 
 ### Setup
 
-```bash
-# 1. Build everything
-make build
+1. **Build everything**
 
-# 2. Start the MCP server with Docker
-make docker-up
+   ```bash
+   make build
+   ```
 
-# 3. Run go-mycli
-./bin/go-mycli --config .my.cnf \
-  --ai-server-url http://127.0.0.1:8800/mcp \
-  --ai-server-mode copilot_mcp_http
-```
+2. **Start the MCP server with Docker**
+
+   ```bash
+   make docker-up
+   ```
+
+3. **Run go-mycli**
+
+   ```bash
+   ./bin/go-mycli --config .my.cnf \
+     --ai-server-url http://127.0.0.1:8800/mcp \
+     --ai-server-mode copilot_mcp_http
+   ```
 
 ### Architecture
 
@@ -50,28 +58,69 @@ Set in `docker-compose.yml` or environment:
 
 ---
 
+## VS Code Integration
+
+For seamless AI-powered EXPLAIN analysis directly in VS Code:
+
+1. **Install GitHub Copilot Chat** extension
+2. **Add to VS Code settings** (`settings.json`):
+
+```json
+{
+  "github.copilot.chat.mcp": {
+    "sqlbot": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "sqlbot-mcp"],
+      "env": {
+        "MYSQL_USER": "root",
+        "MYSQL_PASS": "s3cr3t", 
+        "MYSQL_HOST": "host.docker.internal:3306",
+        "MYSQL_DATABASE": "sakila"
+      }
+    }
+  }
+}
+```
+
+1. **Build and run**: `make docker-up`
+2. **Use in Copilot Chat**: Ask "Explain this SQL query" with your query
+
+This integrates your local sqlbot-mcp with GitHub Copilot for instant query analysis.
+
+---
+
 ## Option 2: Ollama (Free & Local)
 
 Run AI analysis entirely on your machine with Ollama.
 
 ### Ollama Setup
 
-```bash
-# 1. Install Ollama
-brew install ollama
+1. **Install Ollama**
 
-# 2. Start Ollama and pull a model
-ollama serve &
-ollama pull llama3.1:latest
+   ```bash
+   brew install ollama
+   ```
 
-# 3. Start the MCP proxy
-./bin/mcp-server --listen :8800 --upstream http://localhost:11434/v1/chat/completions
+2. **Start Ollama and pull a model**
 
-# 4. Run go-mycli
-./bin/go-mycli --config .my.cnf \
-  --ai-server-url http://127.0.0.1:8800/mcp \
-  --ai-server-mode copilot_mcp_http
-```
+   ```bash
+   ollama serve &
+   ollama pull llama3.1:latest
+   ```
+
+3. **Start the MCP proxy**
+
+   ```bash
+   ./bin/mcp-server --listen :8800 --upstream http://localhost:11434/v1/chat/completions
+   ```
+
+4. **Run go-mycli**
+
+   ```bash
+   ./bin/go-mycli --config .my.cnf \
+     --ai-server-url http://127.0.0.1:8800/mcp \
+     --ai-server-mode copilot_mcp_http
+   ```
 
 ### Notes
 
