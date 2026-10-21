@@ -5,17 +5,19 @@ go 1.24.0
 require (
 	github.com/alecthomas/chroma/v2 v2.20.0
 	github.com/c-bata/go-prompt v0.2.6
-	github.com/go-sql-driver/mysql v1.7.1
+	github.com/go-sql-driver/mysql v1.9.3
 	github.com/spf13/cobra v1.8.0
 	gopkg.in/ini.v1 v1.67.0
 )
 
 require go.etcd.io/bbolt v1.3.7
 
+require filippo.io/edwards25519 v1.1.1 // indirect
+
 require (
 	github.com/dlclark/regexp2 v1.11.5 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/klauspost/compress v1.18.1 // direct
+	github.com/klauspost/compress v1.18.7 // direct
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
